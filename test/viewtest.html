@@ -1,0 +1,149 @@
+<style>
+    @keyframes moveUpDown {
+  
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+  
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  
+    .col-12.col-lg-6.col-xl-5.border.border-1.rounded.overflow-hidden a {
+      animation: moveUpDown 1s infinite;
+      transition: 0.5s all;
+    }
+  
+    .col-12.col-lg-6.col-xl-5.border.border-1.rounded.overflow-hidden a {
+      display: block;
+      width: 75%;
+      height: 75%;
+      background-color: rgba(0, 0, 0, 0.304);
+      transition: width 0.3s ease-out, height 0.3s ease-out;
+    }
+  
+    .col-12.col-lg-6.col-xl-5.border.border-1.rounded.overflow-hidden:hover a {
+      width: 100%;
+      /* hoặc bất kỳ giá trị nào bạn muốn khi hover */
+      height: 100%;
+      /* hoặc bất kỳ giá trị nào bạn muốn khi hover */
+  
+    }
+  </style>
+  <section class="py-3 py-md-5">
+    <div class="container">
+      <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+        <div class="col-12 col-lg-6 col-xl-5 border border-1 rounded overflow-hidden" style="position: relative;">
+          <img class="img-fluid rounded" width="100%" loading="lazy" src="image/logos/{{subject.Logo}}"
+            alt="{{subject.Logo}}">
+          <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.296); display: flex; justify-content: center; align-items: center;">
+            <a ng-click="test()" class="wrapper text-white p-5 rounded text-wrap fs-5 text-center"
+              style="color: white; text-decoration: none; font-size: 18px; font-family: 'Courier New', Courier, monospace;">
+  
+              <img src="image/giphystart.gif" width="100%" alt=""> <br>
+              Click vào đây để thi <i class="fa fa-hand-point-up"></i>
+  
+  
+            </a>
+          </div>
+        </div>
+  
+        <div class="col-12 col-lg-6 col-xl-7">
+          <div class="row justify-content-xl-center">
+            <div class="col-12 col-xl-11">
+              <h2 class="mb-3">Môn Thi : <code>{{subject.Name}}</code></h2>
+              <p class="lead fs-4 text-secondary mb-3">
+                {{subject.Details["Mô tả"]}}
+  
+              </p>
+              <div class="row gy-4 gy-md-0 gx-xxl-5X">
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4 text-primary">
+                      <i class="bx bxl-angular display-1"></i>
+                    </div>
+                    <div>
+                      <h2 class="h4 mb-3">AngularJS</h2>
+                      <p class="text-secondary mb-0">Sử dụng AngularJS và Bootstrap để tạo trang web thi trắc nghiệm trực
+                        tuyến cung cấp trải nghiệm người dùng tốt và giao diện thân thiện. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <div class="d-flex">
+                    <div class="me-4 text-primary">
+                      <i class="bx bxl-bootstrap display-1"></i>
+                    </div>
+                    <div>
+                      <h2 class="h4 mb-3">Bootstrap 5</h2>
+                      <p class="text-secondary mb-0">Công nghệ AngularJS và Bootstrap giúp tối ưu hóa tính năng tương tác
+                        và thiết kế linh hoạt trên nhiều thiết bị cho trang web thi trắc nghiệm trực tuyến.</p>
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <!-- Giới Thiệu về admin -->
+  
+  
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bsb-author-2 ">
+    <div class="container">
+      <div class="row justify-content-center" style="margin: 0px;">
+        <div class="col-12 col-lg-10 col-xl-8 col-xxl-7">
+          <div class="">
+            <div class="row gy-3 align-items-center">
+              <div class="col-md-4">
+                <a href="#!" class="bsb-hover-image d-block rounded overflow-hidden">
+                  <img class="img-fluid author-avatar bsb-scale bsb-hover-scale-up" loading="lazy"
+                    src="image/logo-fpt-polytechnic.png" alt="Iris Henry">
+                </a>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Trang web được lập trình bởi Haihaycode(PD07906)</h6>
+                  <h3 class="card-title mb-2">
+                    <a class="card-link link-dark text-decoration-none" href="#!">HaiHayCode</a>
+                  </h3>
+                  <p class="card-text mb-3">Tôi là một lập trình viên fullstack JavaWeb </p>
+                  <ul class="bsb-social-media nav m-0">
+                    <li class="nav-item">
+                      <a class="nav-link link-dark" href="https://www.facebook.com/dylan.1907">
+                        <i class="bx bxl-facebook-circle "></i> 𝑯𝒂𝒊 𝑷𝒉𝒂𝒎 (Coding and Coffee)
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link link-dark" href="https://github.com/haihaycode">
+                        <i class="bx bxl-github "></i> https://github.com/haihaycode
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link link-dark" href="#!">
+                        <i class="bx bx-location-plus "></i> FPT Polytechnic Đà Nẵng
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link link-dark" href="#!">
+                        <i class="bx bx-mail-send "></i> Haippd0790@fpt.edu.vn
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

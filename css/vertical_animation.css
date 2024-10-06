@@ -1,0 +1,63 @@
+/* Chuyển động của view  */
+.my-slide-container {
+    position: relative;
+  }
+  
+  .my-slide-animation.ng-enter,
+  .my-slide-animation.ng-leave {
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 600px;
+  }
+  
+  .my-slide-animation.ng-enter {
+    z-index: 1000;
+    top: 600px;
+    opacity: 0;
+  }
+  
+  .my-slide-animation.ng-enter.ng-enter-active {
+    top: 0;
+    opacity: 1;
+  }
+  
+  .my-slide-animation.ng-leave {
+    z-index: 101;
+    top: 0;
+    opacity: 1;
+  }
+  
+  .my-slide-animation.ng-leave.ng-leave-active {
+    top: -600px;
+    opacity: 0;
+  }
+  
+  
+/* chuyển động nút Scroll Top   */
+@keyframes moveUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); 
+    }
+  }
+  .scrolltop {
+    animation: moveUpDown 1s infinite; /* Điều chỉnh thời gian và infinite cho chuyển động liên tục */
+    transition: 0.5s all;
+  }
+  
+  .scrolltop:hover {
+    background-color: silver !important; /* Thay đổi màu nền khi hover */
+    transform: translateY(0);
+    
+  }
+  
+  
+  

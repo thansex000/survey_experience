@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <title>Test Online - Trang Thi Trắc nghiệm trực tuyến mới nhất 2024</title>
+  <link rel="address bar icon" href="./image/home.png" type="images/x-icon">
+  <link rel="stylesheet" type="" href="./css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.0/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+  <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+
+
+  <script src="./js/myApp.js"></script>
+  <script src="./js/Subjects.js"></script>
+  <script src="./js/loginpasswordhide.js"></script>
+  <script src="./js/viewcheck.js"></script>
+
+
+
+  <style>
+    .fakeimg {
+      height: 200px;
+      background: #aaa;
+    }
+
+    /* thanh nav đầu trang */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: top 0.9s;
+      /* Thêm hiệu ứng chuyển động */
+    }
+
+    .navbar-hidden {
+      top: -50px;
+      /* hoặc bất kỳ giá trị âm nào để ẩn thanh điều hướng */
+    }
+
+    /* CSS phụ chỉ để làm cho nội dung trang dài */
+    .content {
+      height: 2000px;
+      margin-top: 700px;
+      /* Thêm phần lề trên để tránh phần tử bị che mất */
+    }
+
+
+    /* thanh nav trái */
+    .sidebar {
+      z-index: 1000;
+      height: calc(100% - 56px);
+      /* Chiều cao của thanh nav bên trái bằng chiều cao của trang trừ đi chiều cao của thanh nav bên trên */
+      width: 250px;
+      position: fixed;
+      top: 59px;
+      /* Bắt đầu thanh nav bên trái từ cạnh dưới của thanh nav trên */
+      left: -250px;
+      /* Ẩn thanh nav bên trái ban đầu */
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      /* Thêm hiệu ứng chuyển động */
+      /* Đảm bảo thanh nav bên trái nằm dưới thanh nav bên trên */
+    }
+
+    .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #fff;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #444;
+    }
+
+    .sidebar.active {
+      left: 0;
+      /* Hiển thị thanh nav bên trái khi có class active */
+    }
+  </style>
+
+</head>
+
+<body ng-app="myApp" ng-controller="MyController">
+
+  <!-- lấy name môn thi -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li ng-repeat="item in monthiData">
+        <a href="#">{{ item.Name }}</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- ẩn/hiện thanh nav -->
+  <script>
+    function toggleSidebar() {
+      var sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+  </script>
+
+
+
+  <nav class="navbar navbar-expand-sm bg-vip navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <div class="header_toggle" onclick="toggleSidebar()"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bx bx-home-alt-2"></i> Trang Chủ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bx bx-user"></i> Giới Thiệu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bx bx-message-square-detail"></i> Liên Hệ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bx bx-bookmark"></i> Góp Ý</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="bx bx-question-mark"></i> Hỏi Đáp</a>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="dropdown dropstart">
+      <button type="button" class="btn btn-dropdown dropdown-toggle" data-bs-toggle="dropdown">
+        <span ng-hide="student==null">Hi ! {{student.fullname}}</span>
+        <span ng-show="student==null">Tài Khoản</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="">Đăng ký</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)" onclick="scrollToSection('section1Container')">Đăng
+            nhập</a></li>
+        <li><a class="dropdown-item" href="">Quên mật khẩu</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+        <li><a class="dropdown-item" href="#doimatkhau">Đổi mật khẩu</a></li>
+        <li><a class="dropdown-item" href="#">Cập nhật tài khoản</a></li>
+      </ul>
+    </div>
+
+
+  </nav>
+
+
+  <div class="mt-5 p-5 bg-bgrimage text-white text-center">
+    <div class="h1 px-3 mt-1 rounded text-primary-emphasis">
+      <a href="" class="text-primary-emphasis bold-text large-text" id="randomColor">
+        <span style="color: red">T</span>
+        <span style="color: blue">e</span>
+        <span style="color: green">s</span>
+        <span style="color: orange">t</span>
+        <span style="color: teal"> </span>
+        <span style="color: #4723D9">O</span>
+        <span style="color: #4723D9">n</span>
+        <span style="color:#4723D9">l</span>
+        <span style="color:#4723D9">i</span>
+        <span style="color:#4723D9">n</span>
+        <span style="color:#4723D9">e</span>
+      </a>
+    </div>
+
+
+    <script>
+      // Danh sách màu sắc có thể sử dụng
+      var colors = ['#FF5733', '#8E44AD', '#F4D03F', '#3498DB', '#2ECC71', '#E74C3C', '#EC7063', '#1ABC9C', '#9B59B6', '#E67E22', '#FFC300', '#9B2335', '#34495E', '#3498DB', '#16A085', '#27AE60', '#8E44AD', '#2980B9', '#C0392B', '#F39C12'];
+
+
+      // Chọn một màu ngẫu nhiên từ danh sách và áp dụng cho mỗi ký tự trong văn bản
+      document.querySelectorAll('.h1 a span').forEach(function (span) {
+        var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        span.style.color = randomColor;
+      });
+    </script>
+
+    <p style="color: black;"><strong>Hệ Thống Thi Trắc Nghiệm Miễn Phí Được Phát Triển Bởi TS000</strong></p>
+
+  </div>
+
+
+  <!-- bên dưới là các section để làm riêng -->
+  <!-- đây là script của các section (sectionId: sẽ thay bằng id của section đó) -->
+  <script>
+    function scrollToSection(sectionId) {
+      var section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+
+
+
+  <div id="section1Container" class="container-fluid bg-success-section1 text-white">
+    <div id="loginForm">
+      <form action="" id="form-login">
+        <h1 class="form-heading">Đăng Nhập</h1>
+        <div class="form-group">
+          <i class="far fa-user"></i>
+          <input type="text" class="form-input" placeholder="Nhập username" ng-model="username">
+        </div>
+        <div class="form-group">
+          <i class="fas fa-key"></i>
+          <input type="password" class="form-input" placeholder="Nhập password" ng-model="password">
+          <div id="eye">
+            <i class="far fa-eye"></i>
+          </div>
+        </div>
+        <input ng-click="checktkmk()" type="submit" value="Đăng Nhập" class="form-submit">
+        <input onclick="showRegisterForm()" type="button" value="Đăng Ký" class="form-submit">
+      </form>
+    </div>
+
+    <div id="registerForm" style="display: none;">
+      <form action="" id="form-register">
+        <h1 class="form-heading">Đăng Ký</h1>
+        <div class="form-group">
+          <i class="far fa-user"></i>
+          <input type="text" class="form-input" placeholder="Nhập username" ng-model="registerUsername">
+        </div>
+        <div class="form-group">
+          <i class="fas fa-key"></i>
+          <input type="password" class="form-input" placeholder="Nhập password" ng-model="registerPassword">
+          <div id="eyee">
+            <i class="far fa-eye"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <i class="far fa-user"></i>
+          <input type="text" class="form-input" placeholder="Nhập fullname" ng-model="fullnaem">
+        </div>
+        <div class="form-group">
+          <i class="far fa-user"></i>
+          <input type="text" class="form-input" placeholder="Nhập email" ng-model="email">
+        </div>
+        <div class="form-group">
+          <i class="far fa-user"></i>
+          <input type="text" class="form-input" placeholder="Nhập email" ng-model="registerUsername">
+        </div>
+        <input onclick="showLoginForm()" type="button" value="Đăng Nhập" class="form-submit">
+        <input ng-click="checktkmk()" type="submit" value="Đăng Ký" class="form-submit">
+      </form>
+    </div>
+
+    <script>
+      function showRegisterForm() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('eyee').style.display = 'block'; // Thêm dòng này để hiển thị icon mắt
+      }
+
+      function showLoginForm() {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('eye').style.display = 'block'; // Giữ nguyên ID 'eye' cho form login
+      }
+
+    </script>
+  </div>
+
+  <!-- login là section1 -->
+
+
+
+
+  <!-- đây là là section2 -->
+   <div id="section2Container" class="container-fluid bg-success-section2 text-white" ng-controller="viewcheck">
+    <section class="py-3 py-md-5">
+      <div class="container">
+        <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+          <div class="col-12 col-lg-6 col-xl-5 border border-1 rounded overflow-hidden" style="position: relative;">
+            <img class="img-fluid rounded" width="100%" loading="lazy" src="./image/logos/ADAV.jpg"
+              alt="{{subject.Logo}}">
+            <div
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.296); display: flex; justify-content: center; align-items: center;">
+              <a ng-click="test()" class="wrapper text-white p-5 rounded text-wrap fs-5 text-center"
+                style="color: white; text-decoration: none; font-size: 18px; font-family: 'Courier New', Courier, monospace;">
+    
+                <img src="./image/like.gif" width="100%" alt=""> <br>
+                Click vào đây để thi <i class="fa fa-hand-point-up"></i>
+    
+    
+              </a>
+            </div>
+          </div>
+    
+          <div class="col-12 col-lg-6 col-xl-7">
+            <div class="row justify-content-xl-center">
+              <div class="col-12 col-xl-11">
+                <h2 class="mb-3 color-text">Môn Thi : <code>{{subject.Name}}</code></h2>
+                <p class="lead fs-4 text-secondary mb-3">
+                  {{subject.Details["Mô tả"]}}
+    
+                </p>
+                <div class="row gy-4 gy-md-0 gx-xxl-5X">
+                  <div class="col-12 col-md-6">
+                    <div class="d-flex">
+                      <div class="me-4 text-primary">
+                        <i class="bx bxl-angular display-1"></i>
+                      </div>
+                      <div>
+                        <h2 class="h4 mb-3 color-text-heading">AngularJS</h2>
+                        <p class=" mb-0 color-text">Sử dụng AngularJS và Bootstrap để tạo trang web thi trắc nghiệm trực
+                          tuyến cung cấp trải nghiệm người dùng tốt và giao diện thân thiện. </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <div class="d-flex">
+                      <div class="me-4 text-primary">
+                        <i class="bx bxl-bootstrap display-1"></i>
+                      </div>
+                      <div>
+                        <h2 class="h4 mb-3 color-heading color-text-heading">Bootstrap 5</h2>
+                        <p class="color-text mb-0">Công nghệ AngularJS và Bootstrap giúp tối ưu hóa tính năng tương tác
+                          và thiết kế linh hoạt trên nhiều thiết bị cho trang web thi trắc nghiệm trực tuyến.</p>
+                      </div>
+                    </div>
+                  </div>
+    
+    
+                  <!-- Giới Thiệu về admin -->
+    
+    
+    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <!-- fixed-bottom -->
+  <footer class=" bg-dark text-white text-center py-4">
+    <div>
+      © 2024 Copyright:
+      <a class="white-link" href="https://www.facebook.com/LQ.TS000" target="_blank">TS000 (PD08753)</a>
+    </div>
+  </footer>
+
+
+
+
+</body>
+
+</html>
